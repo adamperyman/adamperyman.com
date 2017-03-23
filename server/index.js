@@ -3,7 +3,7 @@ import express from 'express'
 const app = express()
 
 app.get('/', (req, res) => {
-    res.send('Alex\'s mum is a lovely lady.')
+    res.send('Alex\'s mum is a lovely lady.\n')
 })
 
 app.listen(8080, () => {
