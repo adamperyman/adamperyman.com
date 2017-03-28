@@ -5,7 +5,6 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const extractCSS = new ExtractTextPlugin('[name].bundle.css')
 
 module.exports = {
-  context: path.resolve(__dirname, './'),
   entry: {
     app: './src/client/index.js',
     styles: './src/client/styles/index.scss'
@@ -13,7 +12,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'build'),
     filename: '[name].js',
-    publicPath: '/build'
+    publicPath: '/build/'
   },
   resolve: {
     modules: [
@@ -21,13 +20,12 @@ module.exports = {
       path.resolve('./src')
     ]
   },
-  devServer: {
-    hot: true,
-    contentBase: path.join(__dirname,'src/public'),
-  },
   module: {
     rules: [{
       test: /\.js$/,
+      exclude: [
+        path.resolve(__dirname, 'node_modules')
+      ],
       use: [{
         loader: 'babel-loader',
         options: { 
@@ -41,5 +39,6 @@ module.exports = {
   },
   plugins: [
     extractCSS
-  ]
+  ],
+  devtool: 'source-map'
 }
