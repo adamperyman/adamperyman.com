@@ -15,6 +15,12 @@ module.exports = {
     filename: '[name].js',
     publicPath: '/build'
   },
+  resolve: {
+    modules: [
+      path.resolve('./node_modules'),
+      path.resolve('./src')
+    ]
+  },
   devServer: {
     hot: true,
     contentBase: path.join(__dirname,'src/public'),
