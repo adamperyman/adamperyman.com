@@ -7,7 +7,7 @@ const extractCSS = new ExtractTextPlugin('[name].bundle.css')
 module.exports = {
   context: path.resolve(__dirname, './'),
   entry: {
-    app: './src/index.js',
+    app: './src/client/index.js',
     styles: './src/client/styles/index.scss'
   },
   output: {
