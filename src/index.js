@@ -1,13 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import { Route, BrowserRouter } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 
-import IndexPage from './components/index-page'
+import AppWrapper from './components/app-wrapper'
 
 const AppWithRouter  = () => (
   <BrowserRouter>
-    <Route path='/' component={IndexPage} />
+    <AppWrapper />   
   </BrowserRouter>
 )
 
