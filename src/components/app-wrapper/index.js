@@ -1,16 +1,20 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 
-import TopNav from '../top-nav'
 import IndexPage from '../index-page'
+import PageNotFound from '../page-not-found'
 import TestPage from '../test-page'
+import TopNav from '../top-nav'
 
 const AppWrapper = () => (
   <div className='app-wrapper'>
     <TopNav />
 
-    <Route exact path='/' component={IndexPage} />
-    <Route path='/test-page' component={TestPage} />
+    <Switch>
+      <Route exact path='/' component={IndexPage} />
+      <Route path='/test-page' component={TestPage} />
+      <Route component={PageNotFound} />
+    </Switch>
   </div>
 )
 

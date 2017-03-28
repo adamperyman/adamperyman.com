@@ -9,7 +9,7 @@ const TopNav = () => (
   <div className='top-nav-wrapper'>
     {
       TOP_NAV_LINKS_KEYS.map(link => 
-        <div className={`top-nav-${link}`}>
+        <div className={`top-nav-${link}`} key={link}>
           <Link to={`${TOP_NAV_LINKS[link]}`}>
             <p>{link}</p>
           </Link>
