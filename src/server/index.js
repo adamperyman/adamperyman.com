@@ -5,7 +5,7 @@ import webpack from 'webpack'
 import webpackDevMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
 
-import webpackConfig from '../../webpack.config.js'
+import webpackDevConfig from '../../webpack.config.js'
 
 const app = express()
 const PORT = process.env.PORT || 8080
@@ -19,14 +19,13 @@ app.get('/', (req, res) => {
   res.sendFile(indexPath)
 })
 
-app.use((error, res) => {
-  console.error(error.stack)
-
-  res.status(500).send(error)
+app.use((err, req, res) => {
+  console.error(err.stack)
+  res.sendStatus(500)
 })
 
 if (process.env.NODE_ENV !== 'production') {
-  const compiler = webpack(webpackConfig)
+  const compiler = webpack(webpackDevConfig)
 
   app.use(webpackHotMiddleware(compiler))
   app.use(webpackDevMiddleware(compiler))

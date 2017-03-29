@@ -4,8 +4,9 @@
   "description": "Adam Peryman's Personal Website",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --config ./webpack.config.js --progress --colors",
-    "start": "npm prune && npm i && npm run build && nodemon index.js",
+    "build": "./node_modules/.bin/webpack --config ./webpack.prod.config.js --progress --colors",
+    "start": "npm prune && npm i && npm run build && NODE_ENV=production nodemon index.js",
+    "dev": "NODE_ENV=development node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -13,8 +14,6 @@
     "url": "git+https://github.com/x0bile/adamperyman.com.git"
   },
   "keywords": [
-    "adam",
-    "peryman",
     "adam",
     "peryman"
   ],

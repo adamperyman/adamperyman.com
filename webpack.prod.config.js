@@ -1,10 +1,10 @@
+const webpack = require('webpack')
 const path = require('path')
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const extractCSS = new ExtractTextPlugin('[name].bundle.css')
 
 module.exports = {
-  target: 'node',
   entry: {
     app: './src/client/index.js',
     styles: './src/client/styles/index.scss'
@@ -38,7 +38,13 @@ module.exports = {
     }]
   },
   plugins: [
-    extractCSS
+    extractCSS,
+    new webpack.optimize.UglifyJsPlugin({
+      minimize: true,
+      compress: {
+        warnings: false
+      }
+    })
   ],
   devtool: 'source-map'
 }
