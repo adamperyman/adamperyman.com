@@ -6,13 +6,16 @@ const extractCSS = new ExtractTextPlugin('[name].bundle.css')
 module.exports = {
   target: 'node',
   entry: {
-    app: './src/client/index.js',
+    app: [
+      'react-hot-loader/patch',
+      './src/client/index.js'
+    ],
     styles: './src/client/styles/index.scss'
   },
   output: {
     path: path.join(__dirname, 'build'),
     filename: '[name].js',
-    publicPath: '/build/'
+    publicPath: '/build'
   },
   resolve: {
     modules: [
@@ -20,12 +23,14 @@ module.exports = {
       path.resolve('./src')
     ]
   },
+  devServer: {
+    hot: true,
+    contentBase: path.join(__dirname, 'src/public')
+  },
   module: {
     rules: [{
       test: /\.js$/,
-      exclude: [
-        path.resolve(__dirname, 'node_modules')
-      ],
+      exclude: /node_modules/,
       use: [{
         loader: 'babel-loader',
         options: { 
