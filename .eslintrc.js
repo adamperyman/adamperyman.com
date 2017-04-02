@@ -20,6 +20,14 @@ module.exports = {
         "react"
     ],
     "rules": {
+        "max-len": [
+          "error",
+          120,
+          {
+            "ignoreUrls": true
+          }
+        ]
+    }, {
         "react/jsx-uses-react": [
           "error"
         ],
