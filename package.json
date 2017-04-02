@@ -4,9 +4,7 @@
   "description": "Adam Peryman's Personal Website",
   "main": "index.js",
   "scripts": {
-    "build": "./node_modules/.bin/webpack --config ./webpack.prod.config.js --progress --colors",
-    "start": "npm prune && npm i && npm run build && NODE_ENV=production nodemon index.js",
-    "dev": "NODE_ENV=development node index.js",
+    "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,6 +19,11 @@
   "license": "UNLICENSED",
   "bugs": {
     "url": "https://github.com/x0bile/adamperyman.com/issues"
+  },
+  "babel": {
+    "presets": [
+      "env"
+    ]
   },
   "homepage": "https://github.com/x0bile/adamperyman.com#readme",
   "dependencies": {
@@ -45,11 +48,7 @@
     "extract-text-webpack-plugin": "^2.1.0",
     "node-sass": "^4.5.1",
     "nodemon": "^1.11.0",
-    "react-hot-loader": "^3.0.0-beta.6",
     "sass-loader": "^6.0.3",
-    "webpack": "^2.3.2",
-    "webpack-dev-middleware": "^1.10.1",
-    "webpack-dev-server": "^2.4.2",
-    "webpack-hot-middleware": "^2.17.1"
+    "webpack": "^2.3.2"
   }
 }
