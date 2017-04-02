@@ -1,12 +1,13 @@
 import express from 'express'
 import path from 'path'
-
 import webpack from 'webpack'
+import Log from 'log'
 
 import webpackDevConfig from '../../webpack.config.js'
 
 const app = express()
 const PORT = process.env.PORT || 8080
+const log = new Log('info')
 
 const indexPath = path.join(__dirname, '../public/index.html')
 const publicPath = express.static(path.join(__dirname, '../../build'))
@@ -24,14 +25,14 @@ app.use((req, res) => {
 })
 
 app.listen(8080, () => {
-  console.log(`Now listening at http://localhost:${PORT}`)
+  log.info(`Now listening at http://localhost:${PORT}`)
 })
 
 process.on('uncaughtException', error => {
-  console.error('Uncaught Exception: ', error)
+  log.error('Uncaught Exception: ', error)
 })
 
 process.on('unhandledRejection', error => {
-  console.error('Unhandled Rejection: ', error)
+  log.error('Unhandled Rejection: ', error)
 })
 
