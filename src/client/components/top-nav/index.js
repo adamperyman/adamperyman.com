@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import { TOP_NAV_LINKS } from '../../constants'
+import { TOP_NAV_LINKS } from '../../../constants'
 
 const TOP_NAV_LINKS_KEYS = Object.keys(TOP_NAV_LINKS)
 

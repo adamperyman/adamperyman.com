@@ -10,12 +10,12 @@ import { logger } from '../utils/logger'
 const app = express()
 const PORT = process.env.PORT || 8080
 
-const indexPath = path.join(__dirname, '../public/index.html')
-const publicPath = express.static(path.join(__dirname, '../../build'))
+const indexPath = path.join(__dirname, '../client/index.html')
+const publicPath = express.static(path.join(__dirname, '../../dist'))
 
 webpack(webpackDevConfig)
 
-app.use('/build', publicPath)
+app.use('/dist', publicPath)
 
 app.use(morgan('combined', {
   stream: logger.stream

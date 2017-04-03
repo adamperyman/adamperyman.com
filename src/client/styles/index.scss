@@ -1,4 +1,7 @@
-@import '../../components/app-wrapper/app-wrapper';
-@import '../../components/index-page/index-page';
-@import '../../components/login/login';
-@import '../../components/top-nav/top-nav';
+@import '../components/home-page/home-page';
+@import '../components/login-page/login-page';
+@import '../components/top-nav/top-nav';
+
+.app-wrapper {
+  color: red;
+}
