@@ -1,9 +1,8 @@
 import React from 'react'
 
-const PageNotFound = () => (
+export default () => (
   <div className='page-not-found'>
     <span>Page not found</span>
   </div>
 )
 
-export default PageNotFound

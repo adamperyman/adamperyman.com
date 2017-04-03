@@ -1,16 +1,24 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { AppContainer } from 'react-hot-loader'
 
-import { BrowserRouter } from 'react-router-dom'
+import App from './routes'
 
-import AppWrapper from 'components/app-wrapper'
-
-const AppWithRouter  = () => (
-  <BrowserRouter>
-    <AppWrapper />   
-  </BrowserRouter>
-)
-
-window.onload = () => {
-  ReactDOM.render(<AppWithRouter />, document.getElementById('main'))
+const render = Component => {
+  ReactDOM.render(
+    <AppContainer>
+      <Component />
+    </AppContainer>,
+    document.getElementById('main')
+  )
 }
+
+render(App)
+
+if (module.hot) {
+  module.hot.accept('./routes', () => {
+    const NextApp = require('./routes').default
+    render(NextApp)
+  })
+}
+
