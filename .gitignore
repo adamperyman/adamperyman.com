@@ -1,3 +1,4 @@
 node_modules
 babel-cache
-dist
+dist/app*
+dist/styles*
