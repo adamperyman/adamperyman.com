@@ -6,6 +6,8 @@ import LoginPage from 'components/login-page'
 import PageNotFound from 'components/page-not-found'
 import TopNav from 'components/top-nav'
 
+import './styles/index.scss'
+
 const AppWrapper = () => (
   <div className='app-wrapper'>
     <TopNav />

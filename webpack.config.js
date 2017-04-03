@@ -1,8 +1,13 @@
 const path = require('path')
 const webpack = require('webpack')
 
+const isProduction = process.env.NODE_ENV === 'production'
+
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const extractCSS = new ExtractTextPlugin('[name].bundle.css')
+const extractCSS = new ExtractTextPlugin({
+  filename: '[name].bundle.css',
+  disable: !isProduction
+})
 
 module.exports = {
   devtool: 'cheap-module-source-map',
@@ -13,7 +18,10 @@ module.exports = {
       'react-hot-loader/patch',
       path.join(__dirname, 'src', 'client', 'index.js')
     ],
-    styles: path.join(__dirname, 'src', 'client', 'styles', 'index.scss')
+    styles: [
+      'webpack-hot-middleware/client',
+      path.join(__dirname, 'src', 'client', 'styles', 'index.scss')
+    ]
   },
   output: {
     path: path.join(__dirname, 'dist'),
@@ -39,9 +47,11 @@ module.exports = {
       }]
     }, {
       test: /\.scss$/,
-      loader: extractCSS.extract([
-        'css-loader', 'sass-loader'
-      ])
+      exclude: /node_modules/,
+      use: extractCSS.extract({
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+        fallback: 'style-loader'
+      })
     }]
   },
   plugins: [
