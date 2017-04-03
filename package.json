@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
-    "db-setup": "docker run -d -p 30001:27017 --name mongo1 --net ap-dev-mongo mongo mongod --replSet ap-dev-repl-set -v /mongo",
-    "db-start": "docker exec -it mongo1 mongo",
+    "db-start": "docker run -d -p 30001:27017 -v $PWD/db/data --name ap-dev-db mongo",
+    "db-stop": "docker stop ap-dev-db",
+    "db-rm": "docker rm ap-dev-db",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
