@@ -28,12 +28,12 @@ module.exports = {
       use: [{
         loader: 'babel-loader',
         options: { 
-          presets: ['react', 'env'] 
+          presets: ['react', 'env'] ,
+          plugins: ['transform-runtime']
         }
       }]
     }, {
       test: /\.scss$/,
-      exclude: /node_modules/,
       loader: extractCSS.extract([
         'css-loader', 'sass-loader'
       ])
