@@ -5,7 +5,7 @@ import { TOP_NAV_LINKS } from '../../../constants'
 
 const TOP_NAV_LINKS_KEYS = Object.keys(TOP_NAV_LINKS)
 
-const TopNav = () => (
+export default () => (
   <div className='top-nav'>
     {
       TOP_NAV_LINKS_KEYS.map(link => 
@@ -19,4 +19,3 @@ const TopNav = () => (
   </div>
 )
 
-export default TopNav

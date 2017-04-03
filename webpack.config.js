@@ -1,4 +1,5 @@
 const path = require('path')
+const webpack = require('webpack')
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const extractCSS = new ExtractTextPlugin('[name].bundle.css')
@@ -7,7 +8,11 @@ module.exports = {
   devtool: 'cheap-module-source-map',
   context: path.resolve(__dirname, 'src'),
   entry: {
-    app: path.join(__dirname, 'src', 'client', 'app.js'),
+    app: [
+      'webpack-hot-middleware/client',
+      'react-hot-loader/patch',
+      path.join(__dirname, 'src', 'client', 'index.js')
+    ],
     styles: path.join(__dirname, 'src', 'client', 'styles', 'index.scss')
   },
   output: {
@@ -28,7 +33,7 @@ module.exports = {
       use: [{
         loader: 'babel-loader',
         options: { 
-          presets: ['react', 'env'] ,
+          presets: ['react', 'env'],
           plugins: ['transform-runtime']
         }
       }]
@@ -40,6 +45,8 @@ module.exports = {
     }]
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
     extractCSS
   ]
 }

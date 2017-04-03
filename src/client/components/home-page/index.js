@@ -1,9 +1,8 @@
 import React from 'react'
 
-const HomePage = () => (
+export default () => (
   <div className='home-page'>
     <span>home page</span>
   </div>
 )
 
-export default HomePage

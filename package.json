@@ -4,6 +4,7 @@
   "description": "Adam Peryman's Personal Website",
   "main": "index.js",
   "scripts": {
+    "dev": "node index.js",
     "start": "nodemon index.js",
     "db-start": "docker run -d -p 30001:27017 -v $PWD/db/data --name ap-dev-db mongo",
     "db-stop": "docker stop ap-dev-db",
@@ -26,6 +27,9 @@
   "babel": {
     "presets": [
       "env"
+    ],
+    "plugins": [
+      "react-hot-loader/babel"
     ]
   },
   "homepage": "https://github.com/x0bile/adamperyman.com#readme",
@@ -33,7 +37,7 @@
     "express": "^4.15.2",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
-    "react-hot-loader": "^3.0.0-beta.6",
+    "react-hot-loader": "next",
     "react-router-dom": "^4.0.0"
   },
   "devDependencies": {
@@ -56,6 +60,8 @@
     "nodemon": "^1.11.0",
     "sass-loader": "^6.0.3",
     "webpack": "^2.3.2",
+    "webpack-dev-middleware": "^1.10.1",
+    "webpack-hot-middleware": "^2.18.0",
     "winston": "^2.3.1"
   }
 }

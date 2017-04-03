@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import { Route, Switch, BrowserRouter } from 'react-router-dom'
 
 import HomePage from 'components/home-page'
@@ -25,6 +24,4 @@ const AppWithRouter  = () => (
   </BrowserRouter>
 )
 
-window.onload = () => {
-  ReactDOM.render(<AppWithRouter />, document.getElementById('main'))
-}
+export default AppWithRouter
