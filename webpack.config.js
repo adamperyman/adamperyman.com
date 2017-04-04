@@ -1,62 +1,46 @@
 const path = require('path')
-const webpack = require('webpack')
-
-const isProduction = process.env.NODE_ENV === 'production'
-
+const nodeExternals = require('webpack-node-externals')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const extractCSS = new ExtractTextPlugin({
-  filename: '[name].bundle.css',
-  disable: !isProduction
-})
 
-module.exports = {
-  devtool: 'cheap-module-source-map',
-  context: path.resolve(__dirname, 'src'),
-  entry: {
-    app: [
-      'webpack-hot-middleware/client',
-      'react-hot-loader/patch',
-      path.join(__dirname, 'src', 'client', 'index.js')
-    ],
-    styles: [
-      'webpack-hot-middleware/client',
-      path.join(__dirname, 'src', 'client', 'styles', 'index.scss')
-    ]
-  },
+module.exports = [{
+  entry: path.join(__dirname, 'src', 'server', 'index.js'),
   output: {
     path: path.join(__dirname, 'dist'),
-    publicPath: '/dist/',
-    filename: '[name].js'
+    filename: 'server.js',
+    publicPath: '/'
   },
-  resolve: {
-    modules: [
-      path.resolve(__dirname, 'node_modules'),
-      path.resolve(__dirname, 'src/client')
-    ]
+  target: 'node',
+  externals: nodeExternals(),
+  module: {
+    rules: [{
+      test: /\.js$/,
+      use: [{
+        loader: 'babel-loader'
+      }]
+    }]
+  }
+}, {
+  entry: path.join(__dirname, 'src', 'client', 'index.js'),
+  output: {
+    path: path.join(__dirname, 'dist', 'assets'),
+    publicPath: '/',
+    filename: 'app.js'
   },
+  plugins: [
+    new ExtractTextPlugin({
+      filename: 'index.css',
+      allChunks: true
+    })
+  ],
   module: {
     rules: [{
       test: /\.js$/,
       exclude: /node_modules/,
-      use: [{
-        loader: 'babel-loader',
-        options: { 
-          presets: ['react', 'env'],
-          plugins: ['transform-runtime']
-        }
-      }]
+      loader: 'babel-loader'
     }, {
       test: /\.scss$/,
-      exclude: /node_modules/,
-      use: extractCSS.extract({
-        use: ['style-loader', 'css-loader', 'sass-loader'],
-        fallback: 'style-loader'
-      })
+      loader: ExtractTextPlugin.extract('css!sass')
     }]
-  },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
-    extractCSS
-  ]
-}
+  }
+}]
+

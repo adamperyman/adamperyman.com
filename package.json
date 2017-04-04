@@ -24,14 +24,6 @@
   "bugs": {
     "url": "https://github.com/x0bile/adamperyman.com/issues"
   },
-  "babel": {
-    "presets": [
-      "env"
-    ],
-    "plugins": [
-      "react-hot-loader/babel"
-    ]
-  },
   "homepage": "https://github.com/x0bile/adamperyman.com#readme",
   "dependencies": {
     "express": "^4.15.2",
@@ -48,14 +40,12 @@
     "babel-preset-env": "^1.2.2",
     "babel-preset-react": "^6.23.0",
     "babel-register": "^6.24.0",
-    "body-parser": "^1.17.1",
     "css-loader": "^0.27.3",
     "eslint": "^3.18.0",
     "eslint-config-standard": "^7.1.0",
     "eslint-config-standard-react": "^4.3.0",
     "eslint-plugin-react": "^6.10.3",
     "extract-text-webpack-plugin": "^2.1.0",
-    "morgan": "^1.8.1",
     "node-sass": "^4.5.1",
     "nodemon": "^1.11.0",
     "sass-loader": "^6.0.3",
@@ -63,6 +53,7 @@
     "webpack": "^2.3.2",
     "webpack-dev-middleware": "^1.10.1",
     "webpack-hot-middleware": "^2.18.0",
+    "webpack-node-externals": "^1.5.4",
     "winston": "^2.3.1"
   }
 }
