@@ -1,44 +1,46 @@
-import bodyParser from 'body-parser'
+import React from 'react'
+import { renderToString } from 'react-dom/server'
+import { StaticRouter } from 'react-router'
 import express from 'express'
-import morgan from 'morgan'
-import path from 'path'
 
 import webpack from 'webpack'
 import webpackDevMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
 
-import webpackDevConfig from '../../webpack.config.js'
+import AppRoutes from '../routes'
+import template from './template'
+
+import webpackConfig from '../../webpack.config.js'
 import { logger } from '../utils/logger'
+import { HTML } from '../constants'
 
 const app = express()
-const PORT = process.env.PORT || 8080
+const PORT = process.env.PORT || 3000
+const isProduction = process.env.NODE_ENV === 'production'
 
-const indexPath = path.join(__dirname, '../client/public/index.html')
-const publicPath = express.static(path.join(__dirname, '../../dist'))
+const compiler = webpack(webpackConfig)
 
-const compiler = webpack(webpackDevConfig)
+if (!isProduction) {
+  app.use(webpackDevMiddleware(compiler, {
+    noInfo: true,
+    publicPath: '/'
+  }))
 
-app.use(webpackDevMiddleware(compiler, {
-  noInfo: true,
-  publicPath: webpackDevConfig.output.publicPath
+  app.use(webpackHotMiddleware(compiler))
+}
 
-}))
+app.use('*', (req, res) => {
+  const context = {}
+  const html = renderToString(
+    <StaticRouter location={req.url} context={context}>
+      <AppRoutes />
+    </StaticRouter>
+  )
 
-app.use(webpackHotMiddleware(compiler))
-
-app.use('/dist', publicPath)
-
-app.use(morgan('combined', {
-  stream: logger.stream
-}))
-
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({
-  extended: true
-}))
-
-app.get('/', (req, res) => {
-  res.sendFile(indexPath)
+  res.send(template({
+    title: HTML.MAIN_TITLE,
+    body: html
+  }))
 })
 
 app.use((req, res) => {

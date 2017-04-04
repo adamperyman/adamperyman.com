@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
 
-import App from './routes'
+import AppWithRouter from './router'
 
 const render = Component => {
   ReactDOM.render(
@@ -13,11 +13,11 @@ const render = Component => {
   )
 }
 
-render(App)
+render(AppWithRouter)
 
 if (module.hot) {
-  module.hot.accept('./routes', () => {
-    const NextApp = require('./routes').default
+  module.hot.accept('./router', () => {
+    const NextApp = require('./router').default
     render(NextApp)
   })
 }
