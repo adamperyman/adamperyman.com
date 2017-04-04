@@ -7,30 +7,33 @@ import webpack from 'webpack'
 import webpackDevMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
 
-import AppWrapper from '../client/app-wrapper'
+import AppRoutes from '../routes'
 import template from './template'
 
-import webpackDevConfig from '../../webpack.config.js'
+import webpackConfig from '../../webpack.config.js'
 import { logger } from '../utils/logger'
 import { HTML } from '../constants'
 
 const app = express()
 const PORT = process.env.PORT || 3000
+const isProduction = process.env.NODE_ENV === 'production'
 
-const compiler = webpack(webpackDevConfig)
+const compiler = webpack(webpackConfig)
 
-app.use(webpackDevMiddleware(compiler, {
-  noInfo: true,
-  publicPath: '/'
-}))
+if (!isProduction) {
+  app.use(webpackDevMiddleware(compiler, {
+    noInfo: true,
+    publicPath: '/'
+  }))
 
-app.use(webpackHotMiddleware(compiler))
+  app.use(webpackHotMiddleware(compiler))
+}
 
 app.use('*', (req, res) => {
   const context = {}
   const html = renderToString(
     <StaticRouter location={req.url} context={context}>
-      <AppWrapper />
+      <AppRoutes />
     </StaticRouter>
   )
 

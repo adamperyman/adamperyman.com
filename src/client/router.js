@@ -1,10 +1,10 @@
 import React from 'react'
 import { BrowserRouter } from 'react-router-dom'
 
-import AppWrapper from './app-wrapper'
+import AppWithRoutes from '../routes'
 
 export default () => (
   <BrowserRouter>
-    <AppWrapper />
+    <AppWithRoutes />
   </BrowserRouter>
 )

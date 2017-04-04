@@ -4,7 +4,6 @@ export default ({ title, body }) => {
     <html>
       <head>
         <title>${title}</title>
-        <link rel='stylesheet' href='dist/styles.bundle.css' />
       </head>
 
       <body>

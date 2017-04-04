@@ -1,9 +1,21 @@
+const webpack = require('webpack')
 const path = require('path')
 const nodeExternals = require('webpack-node-externals')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+
+const isProduction = process.env.NODE_ENV === 'production'
+
+const clientUniversalPlugins = []
+const clientProdPlugins = []
+const clientDevPlugins = [
+  new webpack.HotModuleReplacementPlugin(),
+  new webpack.NoEmitOnErrorsPlugin(),
+]
 
 module.exports = [{
-  entry: path.join(__dirname, 'src', 'server', 'index.js'),
+  name: 'server',
+  entry: [
+    path.join(__dirname, 'src', 'server', 'index.js')
+  ],
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'server.js',
@@ -20,18 +32,16 @@ module.exports = [{
     }]
   }
 }, {
-  entry: path.join(__dirname, 'src', 'client', 'index.js'),
+  name: 'client',
+  entry: [
+    'react-hot-loader/patch',
+    path.join(__dirname, 'src', 'client', 'index.js')
+  ],
   output: {
-    path: path.join(__dirname, 'dist', 'assets'),
+    path: path.join(__dirname, 'dist'),
     publicPath: '/',
     filename: 'app.js'
   },
-  plugins: [
-    new ExtractTextPlugin({
-      filename: 'index.css',
-      allChunks: true
-    })
-  ],
   module: {
     rules: [{
       test: /\.js$/,
@@ -39,8 +49,12 @@ module.exports = [{
       loader: 'babel-loader'
     }, {
       test: /\.scss$/,
-      loader: ExtractTextPlugin.extract('css!sass')
+      exclude: /node_modules/,
+      use: ['style-loader', 'css-loader', 'sass-loader']
     }]
-  }
+  },
+  plugins: isProduction
+    ? clientUniversalPlugins.concat(clientProdPlugins)
+    : clientUniversalPlugins.concat(clientDevPlugins)
 }]
 
