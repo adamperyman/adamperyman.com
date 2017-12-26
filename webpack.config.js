@@ -1,62 +1,59 @@
-const path = require('path')
-const webpack = require('webpack')
+const path = require('path');
 
-const isProduction = process.env.NODE_ENV === 'production'
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const extractCSS = new ExtractTextPlugin({
-  filename: '[name].bundle.css',
-  disable: !isProduction
-})
+const extractSass = new ExtractTextPlugin({
+  filename: "[name].[contenthash].css",
+  disable: process.env.NODE_ENV === "development"
+});
+
+const paths = {
+  DIST: path.resolve(__dirname, 'dist'),
+  SRC: path.resolve(__dirname, 'src'),
+  JS: path.resolve(__dirname, 'src/js')
+};
 
 module.exports = {
-  devtool: 'cheap-module-source-map',
-  context: path.resolve(__dirname, 'src'),
-  entry: {
-    app: [
-      'webpack-hot-middleware/client',
-      'react-hot-loader/patch',
-      path.join(__dirname, 'src', 'client', 'index.js')
-    ],
-    styles: [
-      'webpack-hot-middleware/client',
-      path.join(__dirname, 'src', 'client', 'styles', 'index.scss')
-    ]
-  },
+  devtool: 'source-map',
+  entry: path.join(paths.JS, 'app.js'),
   output: {
-    path: path.join(__dirname, 'dist'),
-    publicPath: '/dist/',
-    filename: '[name].js'
-  },
-  resolve: {
-    modules: [
-      path.resolve(__dirname, 'node_modules'),
-      path.resolve(__dirname, 'src/client')
-    ]
+      path: paths.DIST,
+      filename: 'app.bundle.js'
   },
   module: {
     rules: [{
-      test: /\.js$/,
+      test: /\.(js|jsx)$/,
       exclude: /node_modules/,
-      use: [{
-        loader: 'babel-loader',
-        options: { 
-          presets: ['react', 'env'],
-          plugins: ['transform-runtime']
-        }
-      }]
+      use: [ 'babel-loader' ]
     }, {
       test: /\.scss$/,
-      exclude: /node_modules/,
-      use: extractCSS.extract({
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+      use: extractSass.extract({
+        use: [{
+          loader: 'css-loader',
+          options: { sourceMap: true }
+        }, {
+          loader: 'sass-loader',
+          options: { sourceMap: true }
+        }],
         fallback: 'style-loader'
       })
+    }, {
+      test: /\.(png|jpg|gif)$/,
+      use: [ 'file-loader' ]
     }]
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
-    extractCSS
-  ]
-}
+    extractSass,
+    new HtmlWebpackPlugin({
+      template: path.join(paths.SRC, 'index.html')
+    })
+  ],
+  resolve: {
+    extensions: [ '.js', '.jsx' ],
+    modules: [
+      path.resolve(__dirname, 'node_modules'),
+      path.resolve(__dirname, 'src')
+    ]
+  }
+};
