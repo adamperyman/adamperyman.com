@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "Adam Peryman's Personal Website",
   "main": "index.js",
-  "scripts": {
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/x0bile/adamperyman.com.git"
@@ -19,5 +18,8 @@
     "url": "https://github.com/x0bile/adamperyman.com/issues"
   },
   "homepage": "https://github.com/x0bile/adamperyman.com#readme",
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "webpack": "^3.10.0"
+  }
 }
