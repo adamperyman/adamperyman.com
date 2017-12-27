@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from 'react-dom'
 
-import 'css/style.scss'
+import './css/style.scss'
 
 const App = props => <div>Hello, world!</div>
 
