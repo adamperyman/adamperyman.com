@@ -1,11 +1,9 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { render } from 'react-dom'
 
 import 'css/style.scss'
 
-const App = props => (
-  <div>Hello, world!</div>
-)
+const App = props => <div>Hello, world!</div>
 
 export default App
 

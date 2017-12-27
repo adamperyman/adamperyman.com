@@ -1,22 +1,39 @@
+const webpack = require('webpack');
 const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const extractSass = new ExtractTextPlugin({
   filename: "[name].[contenthash].css",
   disable: process.env.NODE_ENV === "development"
 });
 
+const isProduction = process.env.NODE_ENV === 'production'
+
 const paths = {
   DIST: path.resolve(__dirname, 'dist'),
-  SRC: path.resolve(__dirname, 'src'),
-  JS: path.resolve(__dirname, 'src/js')
+  PUBLIC: path.resolve(__dirname, 'public'),
+  CLIENT: path.resolve(__dirname, 'src/client')
 };
+
+const plugins = [
+  extractSass,
+  new HtmlWebpackPlugin({
+    template: path.join(paths.PUBLIC, 'index.html')
+  })
+]
+
+if (isProduction) {
+  plugins.push(
+    new webpack.optimize.UglifyJsPlugin(),
+  );
+}
 
 module.exports = {
   devtool: 'source-map',
-  entry: path.join(paths.JS, 'app.js'),
+  entry: path.join(paths.CLIENT, 'index.js'),
   output: {
       path: paths.DIST,
       filename: 'app.bundle.js'
@@ -43,12 +60,7 @@ module.exports = {
       use: [ 'file-loader' ]
     }]
   },
-  plugins: [
-    extractSass,
-    new HtmlWebpackPlugin({
-      template: path.join(paths.SRC, 'index.html')
-    })
-  ],
+  plugins: plugins,
   resolve: {
     extensions: [ '.js', '.jsx' ],
     modules: [
