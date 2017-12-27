@@ -58,6 +58,10 @@ module.exports = {
     }, {
       test: /\.(png|jpg|gif)$/,
       use: [ 'file-loader' ]
+    }, {
+      test: /\.js$/,
+      exclude: /node_modules/,
+      loaders: ['babel-loader', 'eslint-loader']
     }]
   },
   plugins: plugins,
