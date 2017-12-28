@@ -7,7 +7,7 @@ const app = express()
 
 app.use(express.static(path.join('..', 'client')))
 
-const PORT = process.env.PORT || 8080
+const PORT = process.env.PORT || 80
 
 app.get('/', (req, res) => {
   res.send('Hello, world!')

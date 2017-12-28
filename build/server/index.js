@@ -7,7 +7,7 @@ var app = (0, _express.default)();
 
 app.use(_express.default.static(_path.default.join('..', 'client')));
 
-var PORT = process.env.PORT || 8080;
+var PORT = process.env.PORT || 80;
 
 app.get('/', function (req, res) {
   res.send('Hello, world!');
