@@ -1,6 +1,8 @@
 import express from 'express'
 import path from 'path'
 
+import logger from './logger'
+
 const app = express()
 
 app.use(express.static(path.join('..', 'client')))
@@ -12,5 +14,5 @@ app.get('/', (req, res) => {
 })
 
 app.listen(PORT, () => {
-  console.log('listening on port: ' + PORT)
+  logger.info('listening on port: ' + PORT)
 })

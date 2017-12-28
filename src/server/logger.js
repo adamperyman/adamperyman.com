@@ -35,3 +35,44 @@ const logger = new Logger({
     })
   ]
 })
+
+logger.expressMiddleware = (req, res, next) => {
+  if (req.url.includes('__webpack') && !isProduction) {
+    return next()
+  }
+
+  const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress
+  const defaultMessage = `${ip} - ${req.method} ${req.url}`
+
+  const startTimeStamp = Date.now()
+  const waitTimePrintInterval = 5000
+
+  let waitingTime = 0
+
+  const intervalId = setInterval(() => {
+    waitingTime += waitTimePrintInterval
+
+    logger.verbose(`${defaultMessage} - wait for ${waitingTime / 1000}s..`)
+  }, waitTimePrintInterval)
+
+  const printExecutionTime = (statusCode = '') => {
+    const message = `${defaultMessage} - ${statusCode} - ${(Date.now() - startTimeStamp) / 1000}s`
+
+    if (res.statusCode < 400) {
+      logger.info(message)
+    } else {
+      logger.warn(message)
+    }
+
+    clearInterval(intervalId)
+  }
+
+  req.on('end', () => printExecutionTime(res.statusCode))
+  req.on('close', () => printExecutionTime('[closed by user]'))
+
+  return next()
+}
+
+logger.info(`Log File: ${LOG_FILE_PATH}.`)
+
+export default logger
