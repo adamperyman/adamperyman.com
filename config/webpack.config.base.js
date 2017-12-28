@@ -6,7 +6,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const isProduction = process.env.NODE_ENV === 'production'
 
 const extractSass = new ExtractTextPlugin({
-  filename: "[name].[hash].css",
+  filename: '[name].[hash].css',
   disable: !isProduction
 })
 
@@ -20,9 +20,9 @@ const paths = {
 module.exports = {
   entry: path.join(paths.CLIENT, 'app.js'),
   output: {
-      publicPath: '/',
-      path: path.join(paths.BUILD, 'client'),
-      filename: '[name].js'
+    publicPath: '/',
+    path: path.join(paths.BUILD, 'client'),
+    filename: '[name].js'
   },
   module: {
     rules: [{

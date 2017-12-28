@@ -5,8 +5,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const baseConfig = require('./webpack.config.base')
 
-const isProduction = process.env.NODE_ENV === 'production'
-
 const paths = {
   CLIENT: path.resolve(__dirname, '..', 'src', 'client')
 }
