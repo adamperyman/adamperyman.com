@@ -14,7 +14,8 @@ const paths = {
   BUILD: path.resolve(__dirname, '..', 'build'),
   MODULES: path.resolve(__dirname, '..', 'node_modules'),
   SRC: path.resolve(__dirname, '..', 'src'),
-  CLIENT: path.resolve(__dirname, '..', 'src', 'client')
+  CLIENT: path.resolve(__dirname, '..', 'src', 'client'),
+  SERVER: path.resolve(__dirname, '..', 'src', 'server')
 }
 
 module.exports = {
