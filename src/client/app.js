@@ -1,10 +1,15 @@
 import React from 'react'
-import { render } from 'react-dom'
+import { Redirect, Route, Switch } from 'react-router-dom'
 
-import './css/style.scss'
+import Home from './components/home'
+import Test from './components/test'
 
-const App = () => <div>Hello, world!</div>
-
-export default App
-
-render(<App />, document.getElementById('app'))
+export default () => (
+  <div>
+    <Switch>
+      <Route exact path='/' component={Home} />
+      <Route exact path='/test' name='test' component={Test} />
+      <Redirect to='/' />
+    </Switch>
+  </div>
+)

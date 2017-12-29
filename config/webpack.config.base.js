@@ -19,7 +19,10 @@ const paths = {
 }
 
 module.exports = {
-  entry: path.join(paths.CLIENT, 'app.js'),
+  entry: [
+    '@babel/polyfill',
+    path.join(paths.CLIENT, 'index.js')
+  ],
   output: {
     publicPath: '/',
     path: path.join(paths.BUILD, 'client'),

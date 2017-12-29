@@ -5,6 +5,8 @@
     [ "@babel/preset-env", { modules: false } ]
   ],
   "plugins": [
-    "react-hot-loader/babel"
+    "react-hot-loader/babel",
+    "@babel/syntax-dynamic-import",
+    "@babel/plugin-proposal-class-properties"
   ]
 }
