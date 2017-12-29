@@ -1,6 +1,6 @@
 {
   "name": "adamperyman.com",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Adam Peryman's Personal Website",
   "main": "index.js",
   "scripts": {
