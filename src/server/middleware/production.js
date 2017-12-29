@@ -2,7 +2,7 @@ import path from 'path'
 import express from 'express'
 import compression from 'compression'
 
-const clientBuildPath = path.resolve(__dirname, '..', '..', '..', 'build', 'client')
+const clientBuildPath = path.resolve('build', 'client')
 
 export default app => {
   app.use(compression())
