@@ -4,8 +4,8 @@
   "description": "Adam Peryman's Personal Website",
   "main": "index.js",
   "scripts": {
-    "dev": "NODE_ENV=development nodemon src/server --exec babel-node --presets @babel/env",
-    "start": "NODE_ENV=production nodemon build/server",
+    "run:dev": "NODE_ENV=development nodemon src/server --exec babel-node --presets @babel/env",
+    "run:prod": "NODE_ENV=production nodemon build/server",
     "clean": "rimraf ./build",
     "clean:big": "clear && yarn clean && rimraf ./node_modules && rm yarn.lock",
     "reset": "yarn clean:big && yarn && yarn build",
@@ -30,6 +30,7 @@
   },
   "homepage": "https://github.com/x0bile/adamperyman.com#readme",
   "dependencies": {
+    "ap-logger": "^0.1.4",
     "body-parser": "^1.18.2",
     "compression": "^1.7.1",
     "express": "^4.16.2",
@@ -48,8 +49,7 @@
     "redux-actions": "^2.2.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
-    "sanitize.css": "^5.0.0",
-    "winston": "^2.4.0"
+    "sanitize.css": "^5.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.36",
