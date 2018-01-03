@@ -16,6 +16,8 @@ plugins:
   - react
   - standard
 rules:
+  no-console:
+    - warn
   indent:
     - error
     - 2

@@ -4,7 +4,7 @@
   "description": "Adam Peryman's Personal Website",
   "main": "index.js",
   "scripts": {
-    "run:dev": "NODE_ENV=development nodemon src/server --exec babel-node --presets @babel/env",
+    "run:dev": "NODE_ENV=development HTTP_PORT=3000 nodemon src/server --exec babel-node --presets @babel/env",
     "run:prod": "NODE_ENV=production nodemon build/server",
     "clean": "rimraf ./build",
     "clean:big": "clear && yarn clean && rimraf ./node_modules && rm yarn.lock",
@@ -33,7 +33,7 @@
     "body-parser": "^1.18.2",
     "compression": "^1.7.1",
     "express": "^4.16.2",
-    "happy-fetch": "^0.1.2",
+    "happy-fetch": "^0.1.3",
     "happy-log": "^0.1.0",
     "immutable": "^3.8.2",
     "intl": "^1.2.5",
