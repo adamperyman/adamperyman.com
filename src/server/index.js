@@ -1,7 +1,7 @@
 import express from 'express'
 import bodyParser from 'body-parser'
 
-import logger from 'ap-logger'
+import logger from 'happy-log'
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development'
 process.env.HTTP_PORT = process.env.HTTP_PORT || 3000
