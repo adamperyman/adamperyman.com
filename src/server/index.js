@@ -4,7 +4,7 @@ import bodyParser from 'body-parser'
 import logger from 'happy-log'
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development'
-process.env.HTTP_PORT = process.env.HTTP_PORT || 3000
+process.env.HTTP_PORT = process.env.HTTP_PORT || 8080
 
 const onUnhandledError = err => {
   try {
