@@ -31,13 +31,13 @@ export class Test extends React.Component {
     )
   }
 
-  getResponse = () => {
-    this.props.getGraphQlResponse()
+  getResponse = async () => {
+    await this.props.getGraphQlResponse()
   }
 }
 
 const mapStateToProps = state => ({
-  response: state.test.response
+  response: JSON.stringify(state.test.get('response'))
 })
 
 const mapDispatchToProps = dispatch => ({

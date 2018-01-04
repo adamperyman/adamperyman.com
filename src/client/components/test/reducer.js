@@ -1,21 +1,15 @@
-import { handleActions } from 'redux-actions'
+import { Map } from 'immutable'
 
-const initialState = {
-  response: null,
-  fail: null
-}
+const initialState = Map({
+  response: null
+})
 
-export default handleActions({
-  GET_GRAPHQL_RESPONSE: {
-    next (state, action) {
-      return {
-        response: JSON.stringify(action)
-      }
-    },
-    throw (state, action) {
-      return {
-        fail: JSON.stringify(action)
-      }
-    }
+export default (state = initialState, action) => {
+  switch (action.type) {
+    case 'GET_GRAPHQL_RESPONSE':
+      return state.set('response', action.payload.response)
+
+    default:
+      return state
   }
-}, initialState)
+}
