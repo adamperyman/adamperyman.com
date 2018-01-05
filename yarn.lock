@@ -2802,8 +2802,8 @@ happy-fetch@^0.1.2:
     url-regex "^4.1.1"
 
 happy-log@^0.1.0:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/happy-log/-/happy-log-0.1.1.tgz#bca36b5779fcb4d53a60231317c4e6799e7fb097"
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/happy-log/-/happy-log-0.1.2.tgz#caf202d8e3720ea7542a38ed272f57fbe1bc2cc9"
   dependencies:
     app-root-dir "^1.0.2"
     os "^0.1.1"
