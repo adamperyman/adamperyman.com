@@ -2794,12 +2794,12 @@ handle-thing@^1.2.5:
   version "1.2.5"
   resolved "https://registry.yarnpkg.com/handle-thing/-/handle-thing-1.2.5.tgz#fd7aad726bf1a5fd16dfc29b2f7a6601d27139c4"
 
-happy-fetch@^0.1.2:
-  version "0.1.8"
-  resolved "https://registry.yarnpkg.com/happy-fetch/-/happy-fetch-0.1.8.tgz#1e86c1a54207f4707a1855b70e7e3eded9ee90b9"
+happy-fetch@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/happy-fetch/-/happy-fetch-0.2.0.tgz#8736ecb9c177d4efcc8b9e343ab22ecacd833434"
   dependencies:
+    happy-url-regex "^1.0.2"
     isomorphic-fetch "^2.2.1"
-    url-regex "^4.1.1"
 
 happy-log@^0.1.0:
   version "0.1.2"
@@ -2808,6 +2808,13 @@ happy-log@^0.1.0:
     app-root-dir "^1.0.2"
     os "^0.1.1"
     winston "^2.4.0"
+
+happy-url-regex@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/happy-url-regex/-/happy-url-regex-1.0.2.tgz#f98e1747d31c13b5053bccc1b8956758fcd090d9"
+  dependencies:
+    ip-regex "^1.0.1"
+    tlds "^1.187.0"
 
 har-schema@^1.0.5:
   version "1.0.5"
@@ -6286,13 +6293,6 @@ url-parse@^1.1.8:
   dependencies:
     querystringify "~1.0.0"
     requires-port "~1.0.0"
-
-url-regex@^4.1.1:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/url-regex/-/url-regex-4.1.1.tgz#a5617b22e15e26dac57ce74c3f52088bcdfec995"
-  dependencies:
-    ip-regex "^1.0.1"
-    tlds "^1.187.0"
 
 url@^0.11.0:
   version "0.11.0"
