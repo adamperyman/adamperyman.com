@@ -14,7 +14,7 @@ const paths = {
 module.exports = Object.assign({}, baseConfig, {
   entry: [
     'react-hot-loader/patch',
-    `webpack-hot-middleware/client?http://localhost:${process.env.HTTP_PORT}&reload=true`
+    `webpack-hot-middleware/client?http://localhost:${process.env.PORT}&reload=true`
   ].concat(baseConfig.entry),
   output: Object.assign({}, baseConfig.output, {
     hotUpdateMainFilename: 'hot-update.[hash].json',

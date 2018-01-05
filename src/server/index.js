@@ -4,7 +4,7 @@ import bodyParser from 'body-parser'
 import logger from 'happy-log'
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development'
-process.env.HTTP_PORT = process.env.HTTP_PORT || 8080
+process.env.PORT = process.env.PORT || 8080
 
 const onUnhandledError = err => {
   try {
@@ -34,6 +34,6 @@ app.use(bodyParser.json())
 
 setupAppRoutes(app)
 
-app.listen(process.env.HTTP_PORT, () => {
-  logger.info(`HTTP server is now running on http://localhost:${process.env.HTTP_PORT}`)
+app.listen(process.env.PORT, () => {
+  logger.info(`HTTP server is now running on http://localhost:${process.env.PORT}`)
 })
