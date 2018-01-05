@@ -2801,7 +2801,7 @@ happy-fetch@^0.2.0:
     happy-url-regex "^1.0.2"
     isomorphic-fetch "^2.2.1"
 
-happy-log@^0.1.1:
+happy-log@^0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/happy-log/-/happy-log-0.1.2.tgz#caf202d8e3720ea7542a38ed272f57fbe1bc2cc9"
   dependencies:
