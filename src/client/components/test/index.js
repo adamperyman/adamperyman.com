@@ -5,12 +5,12 @@ import { connect } from 'react-redux'
 
 import RaisedButton from 'material-ui/RaisedButton'
 
-import { runTest } from './actions'
+import { getGraphQlResponse } from './actions'
 
 export class Test extends React.Component {
   static propTypes = {
-    foo: PropTypes.string,
-    runTest: PropTypes.func.isRequired
+    response: PropTypes.string,
+    getGraphQlResponse: PropTypes.func.isRequired
   }
 
   render () {
@@ -19,11 +19,11 @@ export class Test extends React.Component {
         <div>Test Page</div>
 
         <div style={{ margin: '1em', display: 'block' }}>
-          <strong>Foo: {this.props.foo}</strong>
+          <strong>Foo: {this.props.response}</strong>
         </div>
 
         <div style={{ margin: '1em', display: 'block' }}>
-          <RaisedButton label='Click Me' onClick={this.handleRunTest} />
+          <RaisedButton label='Click Me' onClick={this.getResponse} />
         </div>
 
         CLick <Link to='/'>Here</Link> to go home
@@ -31,17 +31,17 @@ export class Test extends React.Component {
     )
   }
 
-  handleRunTest = () => {
-    this.props.runTest()
+  getResponse = async () => {
+    await this.props.getGraphQlResponse()
   }
 }
 
 const mapStateToProps = state => ({
-  foo: state.test.get('foo')
+  response: JSON.stringify(state.test.get('response'))
 })
 
 const mapDispatchToProps = dispatch => ({
-  runTest: () => dispatch(runTest())
+  getGraphQlResponse: () => dispatch(getGraphQlResponse())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Test)

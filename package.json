@@ -4,10 +4,10 @@
   "description": "Adam Peryman's Personal Website",
   "main": "index.js",
   "scripts": {
-    "run:dev": "NODE_ENV=development nodemon src/server --exec babel-node --presets @babel/env",
+    "run:dev": "NODE_ENV=development PORT=3000 nodemon src/server --exec babel-node --presets @babel/env",
     "run:prod": "NODE_ENV=production nodemon build/server",
     "clean": "rimraf ./build",
-    "clean:big": "clear && yarn clean && rimraf ./node_modules && rm yarn.lock",
+    "clean:big": "yarn clean && rimraf ./node_modules && rm yarn.lock",
     "reset": "yarn clean:big && yarn && yarn build",
     "build": "yarn build:client && yarn build:server",
     "build:client": "NODE_ENV=production webpack -p --display-error-details --config=config/webpack.config.prod.js",
@@ -47,7 +47,6 @@
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^4.0.8",
     "redux": "^3.7.2",
-    "redux-actions": "^2.2.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
     "sanitize.css": "^5.0.0"

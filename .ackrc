@@ -1,1 +1,6 @@
 --ignore-dir=build
+--ignore-dir=node_modules
+--smart-case
+
+--ignore-file=is:yarn.lock
+--ignore-file=is:.log

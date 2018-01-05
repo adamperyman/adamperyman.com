@@ -1,7 +1,7 @@
-const webpack = require('webpack')
 const path = require('path')
 
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 const baseConfig = require('./webpack.config.base')
 
@@ -12,8 +12,10 @@ const paths = {
 module.exports = Object.assign({}, baseConfig, {
   devtool: 'cheap-module-source-map',
   plugins: baseConfig.plugins.concat([
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true
+    new UglifyJsPlugin({
+      sourceMap: true,
+      cache: true,
+      parallel: true
     }),
     new HtmlWebpackPlugin({
       hash: true,
